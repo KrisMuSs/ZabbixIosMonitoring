@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct ZabbixIosMonitoringApp: App {
+    @AppStorage("selected_app_theme") private var storedTheme: String = AppTheme.light.rawValue
+
     var body: some Scene {
         WindowGroup {
-            HostsListView()
+            MainView()
+                .preferredColorScheme(currentColorScheme)
+        }
+    }
+
+    private var currentColorScheme: ColorScheme {
+        switch AppTheme(rawValue: storedTheme) ?? .light {
+        case .light:
+            return .light
+        case .dark:
+            return .dark
         }
     }
 }

@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            Text("Дашборд")
+            DashboardView()
                 .tabItem {
                     Image(systemName: "square.grid.2x2")
                     Text("Дашборд")
@@ -21,7 +21,7 @@ struct MainView: View {
                     Text("Проблемы")
                 }
 
-            Text("Настройки")
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape")
                     Text("Настройки")

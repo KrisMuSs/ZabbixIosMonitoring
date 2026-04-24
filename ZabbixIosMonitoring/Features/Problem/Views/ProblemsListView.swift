@@ -40,7 +40,7 @@ struct ProblemsListView: View {
                             .font(.system(size: 16, weight: viewModel.selectedFilter == filter ? .semibold : .medium))
                             .foregroundColor(viewModel.selectedFilter == filter ? .primary : .secondary)
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 18)
+                            .padding(.vertical, 16)
                             .background(
                                 viewModel.selectedFilter == filter
                                 ? Color.white
