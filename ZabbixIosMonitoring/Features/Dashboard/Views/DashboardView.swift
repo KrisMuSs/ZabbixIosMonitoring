@@ -13,7 +13,7 @@ struct DashboardView: View {
 
             contentSection
         }
-        .background(Color(.systemGray6))
+        .background(AppColors.screenBackground)
         .task {
             await viewModel.load()
         }
@@ -23,6 +23,7 @@ struct DashboardView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Дашборд")
                 .font(.system(size: 28, weight: .bold))
+                .foregroundColor(.primary)
 
             Text("Общий обзор системы")
                 .font(.system(size: 14, weight: .medium))
@@ -86,6 +87,7 @@ struct DashboardView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Статус хостов")
                 .font(.system(size: 18, weight: .bold))
+                .foregroundColor(.primary)
 
             Chart {
                 SectorMark(
@@ -118,11 +120,11 @@ struct DashboardView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 
@@ -143,6 +145,7 @@ struct DashboardView: View {
             HStack {
                 Text("Последние проблемы")
                     .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.primary)
 
                 Spacer()
 
@@ -158,11 +161,11 @@ struct DashboardView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 }

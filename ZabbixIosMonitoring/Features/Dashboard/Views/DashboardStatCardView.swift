@@ -21,6 +21,7 @@ struct DashboardStatCardView: View {
 
             Text("\(value)")
                 .font(.system(size: 28, weight: .semibold))
+                .foregroundColor(.primary)
 
             Text(title)
                 .font(.system(size: 14, weight: .medium))
@@ -30,11 +31,11 @@ struct DashboardStatCardView: View {
         }
         .frame(maxWidth: .infinity, minHeight: 138, alignment: .topLeading)
         .padding(18)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 }

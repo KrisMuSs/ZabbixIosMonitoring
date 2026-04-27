@@ -8,11 +8,11 @@ enum MockDashboardData {
             offlineCount: 1
         ),
         topCPUHosts: [
-            DashboardCPUHost(id: "1", name: "api-gateway", cpuLoad: 92),
-            DashboardCPUHost(id: "2", name: "db-master", cpuLoad: 78),
-            DashboardCPUHost(id: "3", name: "mail-server", cpuLoad: 67),
-            DashboardCPUHost(id: "4", name: "web-server-01", cpuLoad: 45),
-            DashboardCPUHost(id: "5", name: "cache-redis-01", cpuLoad: 34)
+            DashboardCPUHost(id: "1", name: "Web Server", cpuLoad: 92),
+            DashboardCPUHost(id: "2", name: "DB Server", cpuLoad: 78),
+            DashboardCPUHost(id: "3", name: "Mail Server", cpuLoad: 67),
+            DashboardCPUHost(id: "4", name: "File Server", cpuLoad: 45),
+            DashboardCPUHost(id: "5", name: "Backup Server", cpuLoad: 34)
         ],
         recentProblems: [
             DashboardRecentProblem(

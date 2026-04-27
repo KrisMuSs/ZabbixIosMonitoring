@@ -7,13 +7,14 @@ struct TopCPUCardView: View {
         VStack(alignment: .leading, spacing: 18) {
             Text("Топ по CPU")
                 .font(.system(size: 18, weight: .bold))
+                .foregroundColor(.primary)
 
             VStack(spacing: 18) {
                 ForEach(hosts) { host in
                     HStack(alignment: .top, spacing: 12) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .fill(Color(.systemGray6))
+                                .fill(AppColors.innerBlockBackground)
                                 .frame(width: 42, height: 42)
 
                             Image(systemName: "server.rack")
@@ -25,6 +26,7 @@ struct TopCPUCardView: View {
                             HStack {
                                 Text(host.name)
                                     .font(.system(size: 15, weight: .medium))
+                                    .foregroundColor(.primary)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.9)
 
@@ -32,12 +34,13 @@ struct TopCPUCardView: View {
 
                                 Text("\(host.cpuLoad)%")
                                     .font(.system(size: 15, weight: .medium))
+                                    .foregroundColor(.primary)
                             }
 
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
                                     Capsule()
-                                        .fill(Color.gray.opacity(0.15))
+                                        .fill(AppColors.progressBackground)
                                         .frame(height: 10)
 
                                     Capsule()
@@ -55,11 +58,11 @@ struct TopCPUCardView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 

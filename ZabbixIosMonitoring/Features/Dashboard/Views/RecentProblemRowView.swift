@@ -18,6 +18,7 @@ struct RecentProblemRowView: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text(problem.title)
                     .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.primary)
                     .lineLimit(2)
 
                 Text(problem.hostName)
@@ -35,7 +36,7 @@ struct RecentProblemRowView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
-        .background(Color(.systemGray6))
+        .background(AppColors.innerBlockBackground)
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 
