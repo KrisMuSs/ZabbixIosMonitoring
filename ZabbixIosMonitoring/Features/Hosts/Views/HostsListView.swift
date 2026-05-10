@@ -13,7 +13,7 @@ struct HostsListView: View {
 
                 contentSection
             }
-            .background(Color(.systemGray6))
+            .background(AppColors.screenBackground)
             .task {
                 await viewModel.load()
             }
@@ -43,7 +43,7 @@ struct HostsListView: View {
             } label: {
                 ZStack {
                     Circle()
-                        .fill(Color(.systemGray5))
+                        .fill(AppColors.innerBlockBackground)
                         .frame(width: 54, height: 54)
 
                     Image(systemName: "arrow.clockwise")

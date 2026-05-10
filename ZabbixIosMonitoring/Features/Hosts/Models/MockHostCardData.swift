@@ -4,7 +4,7 @@ enum MockHostCardData {
     static let hosts: [HostCardModel] = [
         HostCardModel(
             id: "1",
-            name: "web-server-01",
+            name: "Web Server",
             ipAddress: "192.168.0.10",
             status: .online,
             cpuLoad: 45,
@@ -13,7 +13,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "2",
-            name: "db-master",
+            name: "DB Server",
             ipAddress: "192.168.0.20",
             status: .online,
             cpuLoad: 78,
@@ -22,7 +22,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "3",
-            name: "api-gateway",
+            name: "API Server",
             ipAddress: "192.168.0.30",
             status: .warning,
             cpuLoad: 92,
@@ -31,7 +31,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "4",
-            name: "cache-redis-01",
+            name: "Cache Server",
             ipAddress: "192.168.0.40",
             status: .online,
             cpuLoad: 34,
@@ -40,7 +40,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "5",
-            name: "app-server-02",
+            name: "App Server",
             ipAddress: "192.168.0.50",
             status: .offline,
             cpuLoad: 0,
@@ -49,7 +49,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "6",
-            name: "worker-node-01",
+            name: "Mail Server",
             ipAddress: "192.168.0.60",
             status: .online,
             cpuLoad: 62,
@@ -58,7 +58,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "7",
-            name: "monitoring-proxy",
+            name: "Monitoring Server",
             ipAddress: "192.168.0.70",
             status: .warning,
             cpuLoad: 81,
@@ -67,7 +67,7 @@ enum MockHostCardData {
         ),
         HostCardModel(
             id: "8",
-            name: "backup-node",
+            name: "Backup Server",
             ipAddress: "192.168.0.80",
             status: .online,
             cpuLoad: 28,

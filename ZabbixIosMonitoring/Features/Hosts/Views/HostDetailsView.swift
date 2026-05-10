@@ -44,11 +44,14 @@ struct HostDetailsView: View {
             .padding(.top, 18)
             .padding(.bottom, 24)
         }
-        .background(Color(.systemGray6))
+        .background(AppColors.screenBackground)
         .navigationBarBackButtonHidden(true)
         .safeAreaInset(edge: .top) {
             headerView
-                .background(Color.white)
+                .background(AppColors.cardBackground)
+                .overlay(alignment: .bottom) {
+                    Divider()
+                }
         }
     }
 
@@ -59,7 +62,7 @@ struct HostDetailsView: View {
             } label: {
                 ZStack {
                     Circle()
-                        .fill(Color(.systemGray5))
+                        .fill(AppColors.innerBlockBackground)
                         .frame(width: 48, height: 48)
 
                     Image(systemName: "arrow.left")
@@ -67,10 +70,14 @@ struct HostDetailsView: View {
                         .foregroundColor(.primary)
                 }
             }
+            .buttonStyle(.plain)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(details.name)
                     .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
 
                 Text(details.ipAddress)
                     .font(.system(size: 16))
@@ -92,6 +99,7 @@ struct HostDetailsView: View {
         VStack(alignment: .leading, spacing: 22) {
             Text("Текущие показатели")
                 .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.primary)
 
             HStack(spacing: 20) {
                 summaryMetric(title: "CPU", value: details.cpuLoad)
@@ -100,11 +108,11 @@ struct HostDetailsView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 
@@ -112,6 +120,7 @@ struct HostDetailsView: View {
         VStack(spacing: 10) {
             Text("\(value)%")
                 .font(.system(size: 28, weight: .medium))
+                .foregroundColor(.primary)
 
             Text(title)
                 .font(.system(size: 16, weight: .medium))
@@ -120,7 +129,7 @@ struct HostDetailsView: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(Color.gray.opacity(0.15))
+                        .fill(AppColors.progressBackground)
                         .frame(height: 14)
 
                     Capsule()
@@ -140,6 +149,7 @@ struct HostDetailsView: View {
         VStack(alignment: .leading, spacing: 18) {
             Text(title)
                 .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.primary)
 
             AnimatedLineChartView(
                 points: points,
@@ -148,11 +158,11 @@ struct HostDetailsView: View {
             )
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 
@@ -160,6 +170,7 @@ struct HostDetailsView: View {
         VStack(alignment: .leading, spacing: 18) {
             Text("Активные проблемы")
                 .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.primary)
 
             if details.activeProblems.isEmpty {
                 HStack {
@@ -173,37 +184,12 @@ struct HostDetailsView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 112)
-                .background(Color(.systemGray6))
+                .background(AppColors.innerBlockBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
             } else {
                 VStack(spacing: 12) {
                     ForEach(details.activeProblems) { problem in
-                        HStack(spacing: 16) {
-                            ZStack {
-                                Circle()
-                                    .fill(problemIconBackground(problem.severity))
-                                    .frame(width: 44, height: 44)
-
-                                Image(systemName: "exclamationmark.triangle")
-                                    .foregroundColor(problemIconColor(problem.severity))
-                                    .font(.system(size: 20, weight: .medium))
-                            }
-
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text(problem.title)
-                                    .font(.system(size: 18, weight: .medium))
-
-                                Text(problem.subtitle)
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.secondary)
-                            }
-
-                            Spacer()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(18)
-                        .background(Color(.systemGray6))
-                        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                        problemRow(problem)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -211,12 +197,42 @@ struct HostDetailsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
+    }
+
+    private func problemRow(_ problem: HostProblem) -> some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(problemIconBackground(problem.severity))
+                    .frame(width: 44, height: 44)
+
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(problemIconColor(problem.severity))
+                    .font(.system(size: 20, weight: .medium))
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(problem.title)
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundColor(.primary)
+
+                Text(problem.subtitle)
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
+            }
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(18)
+        .background(AppColors.innerBlockBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
     }
 
     private var statusColor: Color {
@@ -260,6 +276,12 @@ struct HostDetailsView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     HostDetailsView(host: MockHostCardData.hosts[0])
+        .preferredColorScheme(.light)
+}
+
+#Preview("Dark") {
+    HostDetailsView(host: MockHostCardData.hosts[0])
+        .preferredColorScheme(.dark)
 }

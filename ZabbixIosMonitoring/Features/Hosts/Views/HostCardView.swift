@@ -7,10 +7,12 @@ struct HostCardView: View {
         VStack(spacing: 18) {
             HStack(alignment: .top, spacing: 14) {
                 statusIcon
+
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(spacing: 8) {
                         Text(host.name)
                             .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.primary)
 
                         Circle()
                             .fill(statusColor)
@@ -26,7 +28,7 @@ struct HostCardView: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 22, weight: .semibold))
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                     .padding(.top, 6)
             }
 
@@ -37,11 +39,11 @@ struct HostCardView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 
@@ -82,11 +84,11 @@ struct HostCardView: View {
     private var iconTintColor: Color {
         switch host.status {
         case .online:
-            return Color.green
+            return .green
         case .warning:
-            return Color.orange
+            return .orange
         case .offline:
-            return Color.red
+            return .red
         }
     }
 }
@@ -112,7 +114,7 @@ private struct MetricBarView: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(Color.gray.opacity(0.18))
+                        .fill(AppColors.progressBackground)
                         .frame(height: 14)
 
                     Capsule()
