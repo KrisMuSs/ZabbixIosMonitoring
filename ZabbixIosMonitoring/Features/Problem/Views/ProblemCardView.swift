@@ -50,63 +50,48 @@ struct ProblemCardView: View {
                 .clipShape(Capsule())
         }
         .padding(24)
-        .background(Color.white)
+        .background(AppColors.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
+                // Заменяем фиксированный серый на системный разделитель
+                .stroke(AppColors.separator.opacity(0.25), lineWidth: 1)
         )
     }
 
     private var iconColor: Color {
         switch problem.severity {
-        case .critical:
-            return .red
-        case .high:
-            return Color.orange
-        case .warning:
-            return Color.orange
-        case .info:
-            return Color.blue
+        case .critical: return .red
+        case .high: return Color.orange
+        case .warning: return Color.orange
+        case .info: return Color.blue
         }
     }
 
     private var iconBackgroundColor: Color {
         switch problem.severity {
-        case .critical:
-            return Color.red.opacity(0.14)
-        case .high:
-            return Color.orange.opacity(0.18)
-        case .warning:
-            return Color.yellow.opacity(0.28)
-        case .info:
-            return Color.blue.opacity(0.18)
+        case .critical: return Color.red.opacity(0.14)
+        case .high: return Color.orange.opacity(0.18)
+        case .warning: return Color.yellow.opacity(0.28)
+        case .info: return Color.blue.opacity(0.18)
         }
     }
 
     private var severityTextColor: Color {
         switch problem.severity {
-        case .critical:
-            return .red
-        case .high:
-            return Color.orange
-        case .warning:
-            return Color.orange
-        case .info:
-            return Color.blue
+        case .critical: return .red
+        case .high: return Color.orange
+        case .warning: return Color.orange
+        case .info: return Color.blue
         }
     }
 
     private var severityBackgroundColor: Color {
         switch problem.severity {
-        case .critical:
-            return Color.red.opacity(0.12)
-        case .high:
-            return Color.orange.opacity(0.16)
-        case .warning:
-            return Color.yellow.opacity(0.28)
-        case .info:
-            return Color.blue.opacity(0.16)
+        case .critical: return Color.red.opacity(0.12)
+        case .high: return Color.orange.opacity(0.16)
+        case .warning: return Color.yellow.opacity(0.28)
+        case .info: return Color.blue.opacity(0.16)
         }
     }
 }

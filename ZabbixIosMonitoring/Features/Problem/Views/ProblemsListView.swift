@@ -12,7 +12,7 @@ struct ProblemsListView: View {
 
             contentSection
         }
-        .background(Color(.systemGray6))
+        .background(AppColors.screenBackground)
         .task {
             await viewModel.load()
         }
@@ -43,7 +43,7 @@ struct ProblemsListView: View {
                             .padding(.vertical, 16)
                             .background(
                                 viewModel.selectedFilter == filter
-                                ? Color.white
+                                ? AppColors.cardBackground
                                 : Color.clear
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -51,7 +51,7 @@ struct ProblemsListView: View {
                 }
             }
             .padding(8)
-            .background(Color(.systemGray5))
+            .background(AppColors.innerBlockBackground)
             .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         }
         .padding(.horizontal, 24)
